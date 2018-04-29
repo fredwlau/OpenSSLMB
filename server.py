@@ -118,7 +118,7 @@ def login(c):
 		for line in file.readlines():
 			login_info = line.split()
 			if username == login_info[0] and password == login_info[1]:
-				data = "You are logged in"
+				data = "You are logged in\n"
 				c.send(data)
 				didFind = 1
 				return 1
