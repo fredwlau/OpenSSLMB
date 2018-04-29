@@ -5,6 +5,7 @@ import os
 import socket
 from thread import*
 import threading
+import ssl_generate
 
 print_lock = threading.Lock()
 
@@ -52,6 +53,8 @@ def main():
 	print("Socket bound to port", port)
 
 	s.listen(5)
+
+        ssl_generate.create_self_signed_cert()
 
 	while True:
 		c, addr = s.accept()
