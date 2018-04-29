@@ -18,7 +18,7 @@ def Main():
     
     #verify SSL
     data = s.recv(1024)
-    ans = input(data)
+    ans = raw_input(data)
     s.send(ans.encode('ascii'))
     if ans == 'Yes':
         data = s.recv(1024)
@@ -34,13 +34,13 @@ def Main():
             break
         if data == 'You are now registered and logged in\n':
             break
-        ans = input(data)
+        ans = raw_input(data)
         s.send(ans.encode('ascii'))
     
     # messages
     while True:
  
-        message = input("Message to send")
+        message = raw_input("Message to send")
         s.send(message.encode('ascii'))
         if message == 'END':
             break
