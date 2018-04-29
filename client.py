@@ -5,7 +5,8 @@ import socket
  
 def Main():
     # local host IP '127.0.0.1'
-    host = '127.0.0.1'
+    host = raw_input("Please enter the hostname of the server you would like to connect to:\n")
+    addr = socket.gethostbyname(host)
     
     # Define the port on which you want to connect
     port = 1234
@@ -13,7 +14,7 @@ def Main():
     s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
     
     # connect to server on local computer
-    s.connect((host,port))
+    s.connect((addr,port))
     
     #verify SSL
     data = s.recv(1024)

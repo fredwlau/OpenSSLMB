@@ -9,7 +9,7 @@ import threading
 print_lock = threading.Lock()
 
 def threaded(c):
-	message = "Would you like to verify this server's SSL certificate? Yes/No"
+	message = "Would you like to verify this server's SSL certificate? Yes/No\n"
 	c.send(message)
 	answer = c.recv(100)
 	a = answer.lower()
@@ -26,6 +26,7 @@ def threaded(c):
 	if a == "yes":
 		n = login(c)
 	else:
+		n = 0
 		register(c)
         if n == 1:
 		message = "The groups are..."
