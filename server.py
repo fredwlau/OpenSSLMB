@@ -27,8 +27,7 @@ def threaded(c):
 	if a == "yes":
 		n = login(c)
 	else:
-		n = 0
-		register(c)
+		n = register(c)
         if n == 1:
 		message = "The groups are..."
 		c.send(data)
@@ -82,7 +81,7 @@ def register(c):
 	file.close()
 	data = "You are now registered and logged in\n"
 	c.send(data)
-	return
+	return 1
 
 def login(c):
 	data = "Please input your desired username:"
@@ -98,7 +97,8 @@ def login(c):
 	for line in open("accountfile.txt", "r").readlines():
 		login_info = line.split()
 		if username == login_info[0] and password == login_info[1]:
-			print("You are logged in!")
+			data = "You are logged in!"
+			c.send(data)
 			didFind=1
 			return 1
 		else:
