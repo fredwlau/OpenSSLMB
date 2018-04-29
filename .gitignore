@@ -2,3 +2,4 @@
 .s*
 domain.*
 *.pyc
+account*
