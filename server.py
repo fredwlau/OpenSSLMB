@@ -64,10 +64,10 @@ def main():
 	s.close()
 
 def register(c):
-	data = "Please input your desired username:"
+	data = "Please input your desired username:\n"
 	c.send(data)
 	username = c.recv(100)
-	data = "Please input your desired password:"
+	data = "Please input your desired password:\n"
 	c.send(data)
 	password = c.recv(100)
 	m = hashlib.md5()
@@ -84,10 +84,10 @@ def register(c):
 	return 1
 
 def login(c):
-	data = "Please input your desired username:"
+	data = "Please enter your  username:\n"
 	c.send(data)
 	username = c.recv(100)
-	data = "Please input your desired password:"
+	data = "Please enter your password:\n"
 	c.send(data)
 	password = c.recv(100)
 	n = hashlib.md5()
@@ -97,7 +97,7 @@ def login(c):
 	for line in open("accountfile.txt", "r").readlines():
 		login_info = line.split()
 		if username == login_info[0] and password == login_info[1]:
-			data = "You are logged in!"
+			data = "You are logged in\n"
 			c.send(data)
 			didFind=1
 			return 1
@@ -107,10 +107,10 @@ def login(c):
 	while count < 3 and didFind == 0:
 		data = "Wrong username or password, please try again"
 		c.send(data)
-		data = "Please enter your username:"
+		data = "Please enter your username:\n"
 		c.send(data)
 		username = c.recv(100)
-		data = "Please enter your password"
+		data = "Please enter your password:\n"
 		c.send(data)
 		password = c.recv(100)
 		k = hashlib.md5()
@@ -128,7 +128,7 @@ def login(c):
 				continue
 		count += 1
 		file.close()
-	data = "You have used all your login attempts"
+	data = "You have used all your login attempts\n"
 	c.send(data)
 if __name__ == "__main__":
     main()
