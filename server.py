@@ -13,7 +13,7 @@ def threaded(c):
 	c.send(message)
 	answer = c.recv(100)
 	a = answer.lower()
-	if(a == "yes"):
+	if (a == "yes"):
 		f = open('domain.crt', 'rb')
 		l = f.read(2048)
 		data = "Sending domain.crt...\n"
