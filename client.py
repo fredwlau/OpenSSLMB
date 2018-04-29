@@ -32,6 +32,8 @@ def Main():
         data = s.recv(1024)
         if data == 'You are logged in\n':
             break
+        if data == 'You are now registered and logged in\n':
+            break
         ans = input(data)
         s.send(ans.encode('ascii'))
     
