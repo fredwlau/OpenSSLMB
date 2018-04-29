@@ -80,7 +80,8 @@ def register(c):
 	file.write(password)
 	file.write("\n")
 	file.close()
-	print("You are now registered and logged in\n")
+	data = "You are now registered and logged in\n"
+	c.send(data)
 	return
 
 def login(c):
