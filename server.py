@@ -48,6 +48,7 @@ def main():
 	host = ""
 	port = 1234
 	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEPORT, 1)
 
 	s.bind((host, port))
 	print("Socket bound to port", port)
