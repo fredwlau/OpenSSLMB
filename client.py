@@ -44,23 +44,23 @@ def Main():
             s.send(ans)
     
     # messages
+    data = s.recv(1024)
+    print(data)
     while True:
         
         data = s.recv(1024)
-        print(data)
-        data = s.recv(1024)
         message = raw_input(data)
         s.send(message)
-        if message == 'END':
+        if message == "END":
             break
 
-        elif message == 'GET':
+        elif message == "GET":
             message = raw_input("Please enter a group name:\n")
             s.send(message)
             data = s.recv(1024)
             print(data)
 
-        elif message == 'POST':
+        elif message == "POST":
             message = raw_input("Please enter a group name:\n")
             s.send(message)
             message = raw_input("PLease enter a message you would like to post:\n")

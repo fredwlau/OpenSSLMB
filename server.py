@@ -33,21 +33,21 @@ def threaded(c):
     else:
         n = register(c)
     if n != 0:
-        while (n != 0):
-            if os.path.isdir(PATH):
-                groups = os.listdir(PATH)
-                if groups == []:
-                    data = "No groups available\n"
-                else:
-                    data = "The available groups are: "
-                    for x in range(len( groups)):
-                        data += groups[x]
-                        data += " "
-                    data += "\n"
-            else:
-                os.mkdir(PATH)
+        if os.path.isdir(PATH):
+            groups = os.listdir(PATH)
+            if groups == []:
                 data = "No groups available\n"
-            c.send(data)
+            else:
+                data = "The available groups are: "
+                for x in range(len( groups)):
+                    data += groups[x]
+                    data += " "
+                data += "\n"
+        else:
+            os.mkdir(PATH)
+            data = "No groups available\n"
+        c.send(data)
+        while (n != 0):
             while True:
                 data = "Please send a command [GET|POST|END]\n"
                 c.send(data)
