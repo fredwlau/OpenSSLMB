@@ -20,7 +20,7 @@ def Main():
     data = s.recv(1024)
     ans = raw_input(data)
     a = ans.lower()
-    s.send(a.encode('ascii'))
+    s.send(a)
     if a == 'yes':
         data = s.recv(1024)
         print(data)
@@ -41,7 +41,7 @@ def Main():
             continue
         else:
             ans = raw_input(data)
-            s.send(ans.encode('ascii'))
+            s.send(ans)
     
     # messages
     while True:
@@ -50,19 +50,19 @@ def Main():
         print(data)
         data = s.recv(1024)
         message = raw_input(data)
-        s.send(message.encode('ascii'))
+        s.send(message)
         if message == 'END':
             break
         elif message == 'GET':
             message = raw_input("Please enter a group name:\n")
-            s.send(message.encode('ascii'))
+            s.send(message)
             data = s.recv(1024)
             print(data)
         elif message == 'POST':
             message = raw_input("Please enter a group name:\n")
-            s.send(message.encode('ascii'))
+            s.send(message)
             message = raw_input("PLease enter a message you would like to post:\n")
-            s.send(message.encode('ascii'))
+            s.send(message)
             data = s.recv(1024)
             print(data)
 
