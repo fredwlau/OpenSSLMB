@@ -64,16 +64,13 @@ def threaded(c):
                         fh = open(group, "r")
                         buf = fh.read()
                         c.send(buf)
-                    else: 
 
                 if data == "POST":
                     #rely...
                     #client should print ("what group...?") and ("what message?")
                     group = s.recv(1024)
-
                     message = s.recv(1024)
                     
-                else:
     else :
         data = "something about too many failed login attempts??"
         c.send(data)
