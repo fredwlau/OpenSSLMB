@@ -41,7 +41,9 @@ def Main():
     
     # messages
     while True:
- 
+        
+        data = s.recv(1024)
+        print(data)
         message = raw_input("Message to send")
         s.send(message.encode('ascii'))
         if message == 'END':
