@@ -39,8 +39,11 @@ def threaded(c):
                 if groups == []:
                     data = "No groups available\n"
                 else:
-                    size = len(groups)-1
-                    data = "The available groups are: " + groups[0:size]
+                    data = "The available groups are: "
+                    for x in range(len( groups)):
+                        data += groups[x]
+                        data += " "
+                    data += "\n"
             else:
                 os.mkdir(PATH)
                 data = "No groups available\n"
