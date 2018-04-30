@@ -29,8 +29,8 @@ def threaded(c):
     else:
         n = register(c)
         if n == 1:
-        message = "The groups are..."
-        c.send(data)
+            message = "The groups are..."
+            c.send(data)
 		#while true:
 		    #data = s.recv(1024)
 		    #if data == "END":
