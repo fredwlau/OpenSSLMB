@@ -48,12 +48,25 @@ def Main():
         
         data = s.recv(1024)
         print(data)
-        message = raw_input("Message to send")
+        data = s.recv(1024)
+        message = raw_input(data)
         s.send(message.encode('ascii'))
         if message == 'END':
             break
-        data = s.recv(1024)
-        print('Received from the server :', str(data.decode('ascii')))
+        elif message == 'GET':
+            message = raw_input("Please enter a group name:\n")
+            s.send(message.encode('ascii'))
+            data = s.recv(1024)
+            print(data)
+        elif message == 'POST':
+            message = raw_input("Please enter a group name:\n")
+            s.send(message.encode('ascii'))
+            message = raw_input("PLease enter a message you would like to post:\n")
+            s.send(message.encode('ascii'))
+            data = s.recv(1024)
+            print(data)
+
+
 
     s.close()
  
