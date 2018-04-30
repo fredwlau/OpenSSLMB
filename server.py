@@ -31,13 +31,30 @@ def threaded(c):
         n = register(c)
     if n == 1:
         while (n == 1):
-            data = "The groups are..."
+            if os.path.isdir("messages")):
+                groups = os.listdir("messages")
+                data = "The available groups are: " + groups
+            else:
+                os.mkdir("messages")
+                data = "No groups available"
             c.send(data)
-    	    #data = s.recv(1024)
-    	    #if data == "END":
-    	    #if data == "GET":
-    	    #if data == "POST":
-    
+            while True:
+                data = "Please send a command [GET|POST|END]"
+                c.send(data)
+                data = s.recv(1024)
+                if data == "END":
+                    data = "You have been disconnected from the server"
+                    c.send(data)
+                    c.close()
+                if data == "GET":
+                    
+                if data == "POST":
+                    
+                else:
+                    
+    else :
+        data = "something about too many failed login attempts??"
+        c.send(data)
     c.close()
 
 def main():
