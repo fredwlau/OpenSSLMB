@@ -37,16 +37,16 @@ def threaded(c):
             if os.path.isdir(PATH):
                 groups = os.listdir(PATH)
                 if groups == []:
-                    data = "No groups available"
+                    data = "No groups available\n"
                 else:
                     size = len(groups)-1
                     data = "The available groups are: " + groups[0:size]
             else:
                 os.mkdir(PATH)
-                data = "No groups available"
+                data = "No groups available\n"
             c.send(data)
             while True:
-                data = "Please send a command [GET|POST|END]"
+                data = "Please send a command [GET|POST|END]\n"
                 c.send(data)
                 data = c.recv(1024)
 
