@@ -30,16 +30,15 @@ def threaded(c):
     else:
         n = register(c)
     if n == 1:
-        data = "The groups are..."
-        c.send(data)
-	#while true:
-	    #data = s.recv(1024)
-	    #if data == "END":
-	    #if data == "GET":
-	    #if data == "POST":
-
-        #print_lock.release()
-        c.close()
+        while (n == 1):
+            data = "The groups are..."
+            c.send(data)
+    	    #data = s.recv(1024)
+    	    #if data == "END":
+    	    #if data == "GET":
+    	    #if data == "POST":
+    
+    c.close()
 
 def main():
     host = ""
