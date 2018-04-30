@@ -53,11 +53,13 @@ def Main():
         s.send(message)
         if message == 'END':
             break
+
         elif message == 'GET':
             message = raw_input("Please enter a group name:\n")
             s.send(message)
             data = s.recv(1024)
             print(data)
+
         elif message == 'POST':
             message = raw_input("Please enter a group name:\n")
             s.send(message)
@@ -66,7 +68,8 @@ def Main():
             data = s.recv(1024)
             print(data)
 
-
+        else:
+            print("we should not get here\n")
 
     s.close()
  
