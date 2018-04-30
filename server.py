@@ -146,7 +146,7 @@ def login(c):
         data = "You must register before logging in\n"
         c.send(data)
         register(c)
-        return register()
+        return register(c)
     data = "Please enter your password:\n"
     c.send(data)
     password = c.recv(100)
