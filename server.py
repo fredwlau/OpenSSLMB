@@ -56,25 +56,31 @@ def threaded(c):
                     c.close()
 
                 if data == "GET":
-                    #rely on client to do the right thing
-                    ##client should print("what group...?"), that's what we're recv'ing
                     data = c.recv(1024)
                     group = PATH+"/"+data
                     if os.path.exists(group):
                         fh = open(group, "r")
                         buf = fh.read()
                         c.send(buf)
+                        fh.close()
                     else:
                         data = "That group does not exist, please try again.\n"
                         c.send(data)
 
                 if data == "POST":
-                    #rely...
-                    #client should print ("what group...?") and ("what message?")
-                    group = s.recv(1024)
-                    message = s.recv(1024)
+                    data = c.recv(1024)
+                    group = PATH+"/"+data
+                    data = c.recv(2048)
+                    message = data+"\n"
+                    fh = open(group, "a+")
+                    fh.write(message)
+                    data = "Message successfully posted.\n"
+                    c.send(data)
 
-                    
+                else:
+                    data = "Invalid operation, please try again.\n"
+                    c.send(data)
+    
     else :
         data = "something about too many failed login attempts??"
         c.send(data)
