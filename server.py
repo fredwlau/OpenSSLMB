@@ -31,8 +31,8 @@ def threaded(c):
         n = login(c)
     else:
         n = register(c)
-    if n == 1:
-        while (n == 1):
+    if n != 0:
+        while (n != 0)):
             if os.path.isdir(PATH)):
                 groups = os.listdir(PATH)
                 data = "The available groups are: " + groups
