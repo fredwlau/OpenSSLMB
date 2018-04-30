@@ -64,6 +64,9 @@ def threaded(c):
                         fh = open(group, "r")
                         buf = fh.read()
                         c.send(buf)
+                    else:
+                        data = "That group does not exist, please try again."
+                        c.send(data)
 
                 if data == "POST":
                     #rely...
