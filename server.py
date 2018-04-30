@@ -53,12 +53,12 @@ def threaded(c):
                 c.send(data)
                 data = c.recv(1024)
 
-                if data == "END":
+                elif data == "END":
                     data = "You have been disconnected from the server\n"
                     c.send(data)
                     c.close()
 
-                if data == "GET":
+                elif data == "GET":
                     data = c.recv(1024)
                     group = PATH+"/"+data
                     if os.path.exists(group):
@@ -70,7 +70,7 @@ def threaded(c):
                         data = "That group does not exist, please try again.\n"
                         c.send(data)
 
-                if data == "POST":
+                elif data == "POST":
                     data = c.recv(1024)
                     group = PATH+"/"+data
                     data = c.recv(2048)
