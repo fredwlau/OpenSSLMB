@@ -44,7 +44,7 @@ def threaded(c):
             while True:
                 data = "Please send a command [GET|POST|END]"
                 c.send(data)
-                data = s.recv(1024)
+                data = c.recv(1024)
 
                 if data == "END":
                     data = "You have been disconnected from the server"
@@ -54,12 +54,13 @@ def threaded(c):
                 if data == "GET":
                     #rely on client to do the right thing
                     ##client should print("what group...?"), that's what we're recv'ing
-                    data = s.recv(1024)
+                    data = c.recv(1024)
                     group = PATH+"/"+data
                     if os.path.exists(group):
                         fh = open(group, "r")
                         buf = fh.read()
                         c.send(buf)
+
 
                 if data == "POST":
                     #rely...
@@ -67,9 +68,6 @@ def threaded(c):
                     group = s.recv(1024)
 
                     message = s.recv(1024)
-                    
-                    
-                else:
                     
     else :
         data = "something about too many failed login attempts??"
