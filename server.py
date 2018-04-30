@@ -27,13 +27,14 @@ def threaded(c):
     c.send(data)
     answer = c.recv(40)
     a = answer.lower()
+    n = 0
     if a == "yes":
         n = login(c)
     else:
         n = register(c)
     if n != 0:
-        while (n != 0)):
-            if os.path.isdir(PATH)):
+        while (n != 0):
+            if os.path.isdir(PATH):
                 groups = os.listdir(PATH)
                 data = "The available groups are: " + groups
             else:
@@ -44,6 +45,7 @@ def threaded(c):
                 data = "Please send a command [GET|POST|END]"
                 c.send(data)
                 data = s.recv(1024)
+
                 if data == "END":
                     data = "You have been disconnected from the server"
                     c.send(data)
@@ -55,12 +57,15 @@ def threaded(c):
                     data = s.recv(1024)
                     group = PATH+"/"+data
                     if os.path.exists(group):
-                        data = 
+                        fh = open(group, "r")
+                        buf = fh.read()
+                        c.send(buf)
 
                 if data == "POST":
                     #rely...
                     #client should print ("what group...?") and ("what message?")
                     group = s.recv(1024)
+
                     message = s.recv(1024)
                     
                     
