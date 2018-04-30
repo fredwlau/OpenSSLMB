@@ -53,7 +53,7 @@ def threaded(c):
                 c.send(data)
                 data = c.recv(1024)
 
-                elif data == "END":
+                if data == "END":
                     data = "You have been disconnected from the server\n"
                     c.send(data)
                     c.close()
