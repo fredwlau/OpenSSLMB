@@ -61,6 +61,7 @@ def Main():
             print(data)
 
         elif message == "POST":
+            print("\n")
             message = raw_input("Please enter a group name:\n")
             s.send(message)
             message = raw_input("PLease enter a message you would like to post:\n")

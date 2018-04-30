@@ -10,8 +10,6 @@ import ssl_generate
 
 PATH = "messages"
 
-print_lock = threading.Lock()
-
 def threaded(c):
     message = "Would you like to verify this server's SSL certificate? Yes/No\n"
     c.send(message)
@@ -23,6 +21,7 @@ def threaded(c):
         data = "Sending domain.crt...\n"
         c.send(data)
         c.send(l)
+        f.close()
     data = "Have you logged into this server before? Yes/No\n"
     c.send(data)
     answer = c.recv(40)
@@ -52,7 +51,7 @@ def threaded(c):
                 data = "Please send a command [GET|POST|END]\n"
                 c.send(data)
                 data = c.recv(1024)
-
+                print(data)
                 if data == "END":
                     data = "You have been disconnected from the server\n"
                     c.send(data)
@@ -71,6 +70,7 @@ def threaded(c):
                         c.send(data)
 
                 elif data == "POST":
+                    print("in server post")
                     data = c.recv(1024)
                     group = PATH+"/"+data
                     data = c.recv(2048)
@@ -79,6 +79,7 @@ def threaded(c):
                     fh.write(message)
                     data = "Message successfully posted.\n"
                     c.send(data)
+                    fh.close()
 
                 else:
                     data = "Invalid operation, please try again.\n"
@@ -104,8 +105,6 @@ def main():
 
     while True:
         c, addr = s.accept()
-        #print_lock.acquire()
-        #thread.start_new_thread(threaded, (c, ))
         Process(target=threaded, args=(c,)).start()
 
     s.close()
