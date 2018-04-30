@@ -37,8 +37,11 @@ def Main():
         if data == 'You are now registered and logged in\n':
             print(data)
             break
-        ans = raw_input(data)
-        s.send(ans.encode('ascii'))
+        if data == "You must register before logging in\n":
+            continue
+        else:
+            ans = raw_input(data)
+            s.send(ans.encode('ascii'))
     
     # messages
     while True:
