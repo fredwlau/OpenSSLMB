@@ -51,7 +51,7 @@ def threaded(c):
                 data = c.recv(1024)
 
                 if data == "END":
-                    data = "You have been disconnected from the server"
+                    data = "You have been disconnected from the server\n"
                     c.send(data)
                     c.close()
 
@@ -65,7 +65,7 @@ def threaded(c):
                         buf = fh.read()
                         c.send(buf)
                     else:
-                        data = "That group does not exist, please try again."
+                        data = "That group does not exist, please try again.\n"
                         c.send(data)
 
                 if data == "POST":
@@ -73,6 +73,7 @@ def threaded(c):
                     #client should print ("what group...?") and ("what message?")
                     group = s.recv(1024)
                     message = s.recv(1024)
+
                     
     else :
         data = "something about too many failed login attempts??"
