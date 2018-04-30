@@ -27,6 +27,7 @@ def threaded(c):
     c.send(data)
     answer = c.recv(40)
     a = answer.lower()
+    n = 0
     if a == "yes":
         n = login(c)
     else:
@@ -110,7 +111,7 @@ def register(c):
     file.close()
     data = "You are now registered and logged in\n"
     c.send(data)
-    return 1
+    return username
 
 def login(c):
     data = "Please enter your username:\n"
@@ -128,7 +129,7 @@ def login(c):
         data = "You must register before logging in\n"
         c.send(data)
         register(c)
-        return 1
+        return register()
     data = "Please enter your password:\n"
     c.send(data)
     password = c.recv(100)
@@ -142,7 +143,7 @@ def login(c):
             data = "You are logged in\n"
             c.send(data)
             didFind=1
-            return 1
+            return username
         else:
             continue
     count = 0
@@ -165,7 +166,7 @@ def login(c):
                 data = "You are logged in\n"
                 c.send(data)
                 didFind = 1
-                return 1
+                return username
             else:
                 continue
         count += 1
