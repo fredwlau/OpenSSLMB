@@ -85,6 +85,18 @@ def login(c):
     data = "Please enter your username:\n"
     c.send(data)
     username = c.recv(100)
+    for line in open("accountfile.txt", "r").readlines():
+        login_info = line.split()
+        if username == login_info[0]:
+            found = 1
+            break
+        else:
+          continue
+    if found != 1:
+        data = "You must register before logging in"
+        c.send(data)
+        register(c)
+        return 1
     data = "Please enter your password:\n"
     c.send(data)
     password = c.recv(100)
