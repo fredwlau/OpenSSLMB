@@ -19,8 +19,9 @@ def Main():
     #verify SSL
     data = s.recv(1024)
     ans = raw_input(data)
-    s.send(ans.encode('ascii'))
-    if ans == 'Yes':
+    a = ans.lower()
+    s.send(a.encode('ascii'))
+    if a == 'yes':
         data = s.recv(1024)
         print(data)
         data = s.recv(2048)

@@ -4,6 +4,7 @@ import hashlib
 import os
 import socket
 from thread import*
+from multiprocessing import Process
 import threading
 import ssl_generate
 
@@ -55,8 +56,9 @@ def main():
 
     while True:
         c, addr = s.accept()
-        print_lock.acquire()
-        start_new_thread(threaded, (c, ))
+        #print_lock.acquire()
+        #thread.start_new_thread(threaded, (c, ))
+        Process(target=threaded, args=(c,)).start()
 
     s.close()
 
@@ -81,7 +83,7 @@ def register(c):
     return 1
 
 def login(c):
-    data = "Please enter your  username:\n"
+    data = "Please enter your username:\n"
     c.send(data)
     username = c.recv(100)
     data = "Please enter your password:\n"
