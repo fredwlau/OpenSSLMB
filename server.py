@@ -47,7 +47,10 @@ def threaded(c):
                     c.send(data)
                     c.close()
                 if data == "GET":
-                    
+                    #rely on client to do the right thing
+                    ##client should print("what group...?"), that's what we're recv'ing
+                    s.recv(1024)
+
                 if data == "POST":
                     
                 else:
