@@ -36,7 +36,11 @@ def threaded(c):
         while (n != 0):
             if os.path.isdir(PATH):
                 groups = os.listdir(PATH)
-                data = "The available groups are: " + groups
+                if groups == []:
+                    data = "No groups available"
+                else:
+                    size = len(groups)-1
+                    data = "The available groups are: " + groups[0:size]
             else:
                 os.mkdir(PATH)
                 data = "No groups available"
@@ -60,7 +64,7 @@ def threaded(c):
                         fh = open(group, "r")
                         buf = fh.read()
                         c.send(buf)
-
+                    else: 
 
                 if data == "POST":
                     #rely...
@@ -69,6 +73,7 @@ def threaded(c):
 
                     message = s.recv(1024)
                     
+                else:
     else :
         data = "something about too many failed login attempts??"
         c.send(data)
