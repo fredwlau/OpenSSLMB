@@ -8,6 +8,8 @@ from multiprocessing import Process
 import threading
 import ssl_generate
 
+PATH = "messages"
+
 print_lock = threading.Lock()
 
 def threaded(c):
@@ -31,11 +33,11 @@ def threaded(c):
         n = register(c)
     if n == 1:
         while (n == 1):
-            if os.path.isdir("messages")):
-                groups = os.listdir("messages")
+            if os.path.isdir(PATH)):
+                groups = os.listdir(PATH)
                 data = "The available groups are: " + groups
             else:
-                os.mkdir("messages")
+                os.mkdir(PATH)
                 data = "No groups available"
             c.send(data)
             while True:
@@ -46,12 +48,21 @@ def threaded(c):
                     data = "You have been disconnected from the server"
                     c.send(data)
                     c.close()
+
                 if data == "GET":
                     #rely on client to do the right thing
                     ##client should print("what group...?"), that's what we're recv'ing
-                    s.recv(1024)
+                    data = s.recv(1024)
+                    group = PATH+"/"+data
+                    if os.path.exists(group):
+                        data = 
 
                 if data == "POST":
+                    #rely...
+                    #client should print ("what group...?") and ("what message?")
+                    group = s.recv(1024)
+                    message = s.recv(1024)
+                    
                     
                 else:
                     
